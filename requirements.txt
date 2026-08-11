@@ -1,0 +1,13 @@
+# 易速鲜花问答平台依赖
+langchain>=1.3
+langchain-community>=0.4
+langchain-openai>=1.4
+langchain-classic>=1.0        # LangChain 1.x 中旧版链(RetrievalQA)所在包
+langchain-qdrant>=1.1         # LangChain 1.x 中 Qdrant 集成所在包
+langchain-text-splitters>=1.1
+qdrant-client==1.15.0         # 必须固定!1.16+ 移除了 create_collection 的 init_from 参数,会导致 langchain-qdrant 报错
+flask>=3.0
+python-dotenv>=1.0
+pypdf
+docx2txt
+sentence-transformers>=5.0    # 本地嵌入模型 BAAI/bge-small-zh-v1.5

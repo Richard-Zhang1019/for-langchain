@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip list *)",
+      "WebFetch(domain:api-docs.deepseek.com)",
+      "Bash(curl -s -o /dev/null -w \"embeddings endpoint: %{http_code}\\\\n\" -X POST https://api.deepseek.com/v1/embeddings -H \"Content-Type: application/json\" -d '{\"input\":[\"test\"],\"model\":\"deepseek-embedding\"}')",
+      "Bash(curl -s -o /dev/null -w \"chat endpoint: %{http_code}\\\\n\" -X POST https://api.deepseek.com/chat/completions -H \"Content-Type: application/json\" -d '{\"model\":\"deepseek-v4-flash\",\"messages\":[{\"role\":\"user\",\"content\":\"hi\"}]}')",
+      "Bash(pip install *)",
+      "Bash(curl -s http://127.0.0.1:5000/)",
+      "Bash(curl -s -X POST http://127.0.0.1:5000/ -d \"question=向日葵的花语是什么\")",
+      "Bash(curl -s -m 10 http://127.0.0.1:5000/)",
+      "Bash(curl -s -m 30 -X POST http://127.0.0.1:5000/ -d \"question=向日葵的花语是什么\")",
+      "Bash(curl -s -m 10 http://127.0.0.1:5001/)",
+      "Bash(curl -s -m 60 -X POST http://127.0.0.1:5001/ -d \"question=向日葵的花语是什么\")",
+      "Bash(awk '{print $2, $11, $12}')",
+      "Bash(kill 53156 53198)",
+      "Bash(grep -oE \"\\(<h2>Answer</h2>|向日葵[^<]{0,60}\\)\")",
+      "Bash(curl -s -m 10 http://127.0.0.1:5001/ -o /tmp/get_page.html -w \"HTTP %{http_code}, %{size_download} bytes\\\\n\")",
+      "Bash(pkill -f \"python3 test3.py\")",
+      "Bash(rm -f /Users/ayu/Desktop/langchain/_smoke_test.py /tmp/emb_v1.json /tmp/get_page.html)",
+      "Bash(curl -s -m 60 -X POST http://127.0.0.1:5001/ -d \"question=情人节送什么花比较好?\")",
+      "Bash(pkill -f \"test3.py\")"
+    ]
+  }
+}
