@@ -19,7 +19,10 @@
       "Bash(pkill -f \"python3 test3.py\")",
       "Bash(rm -f /Users/ayu/Desktop/langchain/_smoke_test.py /tmp/emb_v1.json /tmp/get_page.html)",
       "Bash(curl -s -m 60 -X POST http://127.0.0.1:5001/ -d \"question=情人节送什么花比较好?\")",
-      "Bash(pkill -f \"test3.py\")"
+      "Bash(pkill -f \"test3.py\")",
+      "Bash(python \"03.模型io.py\")",
+      "Bash(pip3 list *)",
+      "Bash(pip3 install *)"
     ]
   }
 }

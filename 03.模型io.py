@@ -5,7 +5,8 @@ load_dotenv()  # 加载 .env 文件中的环境变量
 from langchain_core.prompts import PromptTemplate
 # 创建原始模板
 template = """您是一位专业的鲜花店文案撰写员。\n
-对于售价为 {price} 元的 {flower_name} ，您能提供一个吸引人的简短描述吗？
+对于售价为 {price} 元的 {flower_name} ，您能提供一个吸引人的简短描述吗？\n
+{format_instructions}
 """
 # 根据原始模板创建LangChain提示模板
 prompt = PromptTemplate.from_template(template) 
@@ -27,7 +28,7 @@ model = ChatOpenAI(
 )
 
 # 导入结构化输出解析器和ResponseSchema
-from langchain_core.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
 # 定义我们想要接收的响应模式
 response_schemas = [
     ResponseSchema(name="description", description="鲜花的描述文案"),
@@ -58,7 +59,7 @@ for flower, price in zip(flowers, prices):
     output = model.invoke(input)
     
     # 解析模型的输出（这是一个字典结构）
-    parsed_output = output_parser.parse(output)
+    parsed_output = output_parser.parse(output.content)
 
     # 在解析后的输出中添加“flower”和“price”
     parsed_output['flower'] = flower
