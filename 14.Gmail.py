@@ -1,6 +1,6 @@
 # 本文件需要 OPENAI_API_KEY，以及本机准备好 Gmail 的 credentials.json（客户端秘密文件）与
 # 授权的 token.json；运行时会从已配置的 Gmail 账号读取邮件。需要开放 Google Cloud Gmail API。
-import os, sys
+import os
 from dotenv import load_dotenv
 load_dotenv()
 api_key = os.environ.get('DEEPSEEK_API_KEY')
