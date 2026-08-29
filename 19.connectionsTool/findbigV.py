@@ -1,11 +1,7 @@
-# 从上级目录加载 .env 中的 API 密钥
+# 设置OpenAI API密钥
 import os
-from dotenv import load_dotenv
-
-load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
-
-# .env 中使用 SERP_API_KEY，而 SerpAPIWrapper 读取 SERPAPI_API_KEY，做一次映射
-os.environ.setdefault("SERPAPI_API_KEY", os.environ.get("SERP_API_KEY", ""))
+os.environ["OPENAI_API_KEY"] = os.environ.get('DEEPSEEK_API_KEY')
+os.environ["SERPAPI_API_KEY"] = os.environ.get('SERPAPI_API_KEY')
 
 # 导入所取的库
 import re
@@ -58,16 +54,17 @@ if __name__ == "__main__":
     result = generate_letter(information = person_info)
     print(result)
 
+    from flask import jsonify
     import json
     # 使用json.loads将字符串解析为字典
     result = json.loads(result)
-    # 注意：jsonify 必须在 Flask 应用上下文中使用，命令行直接测试时打印字典即可
-    abc = {
-        "summary": result["summary"],
-        "facts": result["facts"],
-        "interest": result["interest"],
-        "letter": result["letter"],
-    }
-    print(abc)
+    abc = jsonify(
+        {
+            "summary": result["summary"],
+            "facts": result["facts"],
+            "interest": result["interest"],
+            "letter": result["letter"],
+        }
+    ) 
 
 

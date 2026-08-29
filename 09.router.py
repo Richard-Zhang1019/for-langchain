@@ -88,21 +88,21 @@ def _branch_default(x: str) -> str:
     return default_chain.invoke({"input": x})
 
 
-# chain_branch = RunnableBranch(
-#     (lambda x: router_chain.invoke({"input": x}).strip().lower() == "flower_care", _branch_care),
-#     (lambda x: router_chain.invoke({"input": x}).strip().lower() == "flower_decoration", _branch_deco),
-#     _branch_default,
-# )
+chain_branch = RunnableBranch(
+    (lambda x: router_chain.invoke({"input": x}).strip().lower() == "flower_care", _branch_care),
+    (lambda x: router_chain.invoke({"input": x}).strip().lower() == "flower_decoration", _branch_deco),
+    _branch_default,
+)
 
 print("=" * 60)
 # 测试1：应进入 flower_care（养花护理）
 print("问题: 如何为玫瑰浇水？")
-print(chain.invoke("如何为玫瑰浇水？"))
+print(chain_branch.invoke("如何为玫瑰浇水？"))
 print("=" * 60)
 # 测试2：应进入 flower_decoration（鲜花装饰）
 print("问题: 如何为婚礼场地装饰花朵？")
-print(chain.invoke("如何为婚礼场地装饰花朵？"))
+print(chain_branch.invoke("如何为婚礼场地装饰花朵？"))
 print("=" * 60)
 # 测试3：不属于任何场景，应进入 default 兜底链
 print("问题: 如何区分阿豆和罗豆？")
-print(chain.invoke("如何区分阿豆和罗豆？"))
+print(chain_branch.invoke("如何区分阿豆和罗豆？"))
